@@ -107,27 +107,26 @@ def collect_data(path):
         return [], [], []
 
 if __name__ == "__main__":
-    path_list = [f"/mnt/petrelfs/zhaoshitian/Flux-Text/benchmarks/final_result_files_with_qa_score_and_ocr/Lumina_Text_10k_anytext_anytext_calibrated_only_simple.json"]
+    path = os.getenv("BENCH_RESULT_PATH")
 
     all_nled_simple_image, all_nled_enhanced_image = [], []
     all_recall_simple_image, all_recall_enhanced_image = [], []
 
-    for path in path_list:
-        ocr_results_simple_image, ocr_results_enhanced_image, gt_text_list = collect_data(path)
-        
-        # Calculate NLED
-        nled_list_simple_image = [matching_based_nled(A, B) for A, B in zip(gt_text_list, ocr_results_simple_image)]
-        nled_list_enhanced_image = [matching_based_nled(A, B) for A, B in zip(gt_text_list, ocr_results_enhanced_image)]
+    ocr_results_simple_image, ocr_results_enhanced_image, gt_text_list = collect_data(path)
+    
+    # Calculate NLED
+    nled_list_simple_image = [matching_based_nled(A, B) for A, B in zip(gt_text_list, ocr_results_simple_image)]
+    nled_list_enhanced_image = [matching_based_nled(A, B) for A, B in zip(gt_text_list, ocr_results_enhanced_image)]
 
-        # Calculate Recall
-        recall_list_simple_image = [calculate_recall(A, B) for A, B in zip(gt_text_list, ocr_results_simple_image)]
-        recall_list_enhanced_image = [calculate_recall(A, B) for A, B in zip(gt_text_list, ocr_results_enhanced_image)]
+    # Calculate Recall
+    recall_list_simple_image = [calculate_recall(A, B) for A, B in zip(gt_text_list, ocr_results_simple_image)]
+    recall_list_enhanced_image = [calculate_recall(A, B) for A, B in zip(gt_text_list, ocr_results_enhanced_image)]
 
-        # Aggregate results
-        all_nled_simple_image += nled_list_simple_image
-        all_nled_enhanced_image += nled_list_enhanced_image
-        all_recall_simple_image += recall_list_simple_image
-        all_recall_enhanced_image += recall_list_enhanced_image
+    # Aggregate results
+    all_nled_simple_image += nled_list_simple_image
+    all_nled_enhanced_image += nled_list_enhanced_image
+    all_recall_simple_image += recall_list_simple_image
+    all_recall_enhanced_image += recall_list_enhanced_image
 
     # Output results
     print(f"NLED score (simple): {sum(all_nled_simple_image)/len(all_nled_simple_image)}")

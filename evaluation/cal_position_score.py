@@ -17,8 +17,8 @@ from tqdm import tqdm
 all_answer_list_position = []
 all_question_num_position = 0
 
-json_path = f"/mnt/petrelfs/zhaoshitian/Flux-Text/benchmarks/final_result_files_with_qa_score_and_ocr/final_easy_seed42_expfluxtext-10k-e5.json"
-img_source = "simple"
+json_path = os.getenv("BENCH_RESULT_PATH")
+img_source = os.getenv("IMG_SOURCE")
 
 
 def check_box_position(position, box_coords, image_size=1024):
@@ -189,9 +189,10 @@ for element in tqdm(data):
     new_data_list.append(element)
 
 # Save the updated JSON data
-# with open(output_json, "w") as f:
-#     json.dump(new_data_list, f, indent=4)
+output_json = os.getenv("SAVE_PATH")
+with open(output_json, "w") as f:
+    json.dump(new_data_list, f, indent=4)
 
-# print("Processing completed, results saved!")
+print("Processing completed, results saved!")
 
 print(f"acc: {sum([_ == 'yes' for _ in all_answer_list_position])/all_question_num_position}")
