@@ -1,0 +1,4 @@
+META:
+  -
+    path: 'path_to_datadir/1k_text.json'
+    type: 'image_text'

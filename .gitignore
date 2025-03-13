@@ -1,0 +1,7 @@
+# python & data cache
+__pycache__/
+
+# data cache
+accessory_data_cache/
+
+# generated files
