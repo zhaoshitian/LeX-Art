@@ -96,7 +96,7 @@ For detailed instructions on model evaluation, please refer to the [Evaluation R
 - [x] Release the inference code.
 - [x] Release the evaluation code.
 - [x] Release the data and checkpoints for LeX Series.
-- [ ] Release the training code.
+- [x] Release the training code for LeX-Lumina & LeX-FLUX.
 
 ## 📚 BibTeX
 
