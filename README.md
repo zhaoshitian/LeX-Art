@@ -5,7 +5,7 @@
 
 [[Paper]()] &emsp; [[Project Page](https://zhaoshitian.github.io/lexart/)] &emsp; 
 
-[[🤗Model Card (LeX-Enhancer)](https://huggingface.co/X-ART/LeX-Enhancer-full)] &emsp; [[🤗Model Card (LeX-Lumina)](https://huggingface.co/X-ART/LeX-Lumina)] &emsp; [[🤗Data (LeX-Data)](https://huggingface.co/datasets/X-ART/LeX-Data-10K)]  &emsp; [[🤗Bench (LeX-Bench)](https://huggingface.co/datasets/X-ART/LeX-Bench)] <br>
+[[🤗LeX-Enhancer (Model)](https://huggingface.co/X-ART/LeX-Enhancer-full)] &emsp; [[🤗LeX-Lumina (Model)](https://huggingface.co/X-ART/LeX-Lumina)] &emsp; [[🤗LeX-10K (Data)](https://huggingface.co/datasets/X-ART/LeX-Data-10K)]  &emsp; [[🤗LeX-Bench (Benchmark)](https://huggingface.co/datasets/X-ART/LeX-Bench)] <br>
 
 </div>
 
