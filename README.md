@@ -1,7 +1,7 @@
 <div align="center">
 
 
-# LeX-Art: Rethinking Visual Text Generation from Complex Glyph Modules to Scalable High-Quality Data Synthesis.
+# LeX-Art: Rethinking Text Generation via Scalable High-Quality Data Synthesis.
 
 [[Paper]()] &emsp; [[Project Page](https://zhaoshitian.github.io/lexart/)] &emsp; 
 
@@ -9,7 +9,7 @@
 
 </div>
 
-This is the official repository for **LeX-Art: Rethinking Visual Text Generation from Complex Glyph Modules to Scalable High-Quality Data Synthesis**.
+This is the official repository for **LeX-Art: Rethinking Text Generation via Scalable High-Quality Data Synthesis**.
 
 ### 🌠  **Key Features:**
 
