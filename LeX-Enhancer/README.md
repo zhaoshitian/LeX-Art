@@ -13,7 +13,7 @@ SYSTEM_TEMPLATE = (
     "<think> reasoning process here </think> <answer> answer here </answer>."
 )
 
-model_path = 'X-ART/LeX-Enhancer-full'
+model_path = 'X-ART/LeX-Enhancer'
 simple_caption = "A thank you card with the words very much, with the text on it: \"VERY\" in black, \"MUCH\" in yellow."
 
 def create_chat_template(user_prompt):
