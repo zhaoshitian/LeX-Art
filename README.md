@@ -96,7 +96,7 @@ For detailed instructions on model evaluation, please refer to the [Evaluation R
 - [x] Release the evaluation code.
 - [x] Release the data and checkpoints for LeX Series.
 - [x] Release the training code for LeX-Lumina.
-- [ ] Release the training code for LeX-FLUX
+- [ ] Release the training code for LeX-FLUX.
 
 ## 📚 BibTeX
 
