@@ -6,7 +6,7 @@
 
 # LeX-Art: Rethinking Text Generation via Scalable High-Quality Data Synthesis.
 
-[[Paper]()] &emsp; [[Project Page](https://zhaoshitian.github.io/lexart/)] &emsp; 
+[[Paper](https://arxiv.org/pdf/2503.21749)] &emsp; [[Project Page](https://zhaoshitian.github.io/lexart/)] &emsp; 
 
 [[🤗LeX-Enhancer (Model)](https://huggingface.co/X-ART/LeX-Enhancer-full)] &emsp; [[🤗LeX-Lumina (Model)](https://huggingface.co/X-ART/LeX-Lumina)] &emsp; [[🤗LeX-10K (Data)](https://huggingface.co/datasets/X-ART/LeX-Data-10K)]  &emsp; [[🤗LeX-Bench (Benchmark)](https://huggingface.co/datasets/X-ART/LeX-Bench)] <br>
 
@@ -104,12 +104,10 @@ If you find LeX-Art useful for your research and applications, please cite using
 
 ```BibTeX
 @article{zhao2025lexart,
-  title={LeX-Art: Rethinking Text Generation for Visual Content via Scalable High-Quality Data Synthesis},
-  author={
-    Zhao, Shitian and Wu, Qilong and Li, Xinyue and Zhang, Bo and Li, Ming and Qin, Qi and Liu, Dongyang and Zhang, Kaipeng and Li, Hongsheng and Qiao, Yu and Gao, Peng and Fu, Bin and Li, Zhen
-  },
-  journal={arXiv preprint},
-  year={2025}
+    title={LeX-Art: Rethinking Text Generation via Scalable High-Quality Data Synthesis},
+    author={Zhao, Shitian and Wu, Qilong and Li, Xinyue and Zhang, Bo and Li, Ming and Qin, Qi and Liu, Dongyang and Zhang, Kaipeng and Li, Hongsheng and Qiao, Yu and Gao, Peng and Fu, Bin and Li, Zhen},
+    journal={arXiv preprint arXiv:2503.21749},
+    year={2025}
 }
 ```
 
@@ -119,5 +117,6 @@ Our work is primarily built upon
 [FLUX](https://github.com/black-forest-labs/flux), 
 [Lumina-Image-2.0](https://github.com/Alpha-VLLM/Lumina-Image-2.0), 
 [Qwen](https://github.com/QwenLM/Qwen2.5), 
-[DeepSeek](https://github.com/deepseek-ai/DeepSeek-R1), etc.
+[DeepSeek](https://github.com/deepseek-ai/DeepSeek-R1), 
+[sd-scripts](https://github.com/kohya-ss/sd-scripts), etc.
 We extend our gratitude to all these authors for their significant contributions to the community.
