@@ -1,6 +1,9 @@
 <div align="center">
 
 
+
+
+
 # LeX-Art: Rethinking Text Generation via Scalable High-Quality Data Synthesis.
 
 [[Paper]()] &emsp; [[Project Page](https://zhaoshitian.github.io/lexart/)] &emsp; 
@@ -24,7 +27,7 @@ This is the official repository for **LeX-Art: Rethinking Text Generation via Sc
 
 ## 🎤 Introduction
 
-Generating visually appealing and accurate text within images is challenging due to the difficulty of balancing text fidelity, aesthetic integration, and stylistic diversity. To address this, we introduce **LeX**, a framework that enhances text-to-image generation through **LeX-Enhancer**, a 14B-parameter prompt optimizer, and **LeX-10K**, a high-quality dataset. Using this, we train **LeX-Flux (12B)** and **LeX-Lumina (2B)**, achieving state-of-the-art performance. We also propose **LeX-Bench** and **PNED**, a novel metric for evaluating text correctness and aesthetics. Experiments show **LeX-Lumina** improves PNED by **22.16%**, while **LeX-Flux** enhances color accuracy, position accuracy, and font fidelity.
+Generating visually appealing and accurate text within images is challenging due to the difficulty of balancing text fidelity, aesthetic integration, and stylistic diversity. To address this, we introduce **LeX**, a framework that enhances text-to-image generation through **LeX-Enhancer**, a 14B-parameter prompt optimizer, and **LeX-10K**, a high-quality dataset. Using this, we train **LeX-Flux (12B)** and **LeX-Lumina (2B)**, achieving state-of-the-art performance. We also propose **LeX-Bench** and **PNED**, a novel metric for evaluating text correctness and aesthetics. Experiments show **LeX-Lumina** achieving a **79.81\%** PNED gain on CreateBench, and **LeX-FLUX** outperforming baselines in color (+3.18\%), positional (+4.45\%), and font accuracy (+3.81\%).
 
 ## 📬 News
 
@@ -66,13 +69,9 @@ conda create -n lex python=3.10
 
 # if cuda version == 12.1
 pip install torch==2.4.0 torchvision==0.19.0 --index-url https://download.pytorch.org/whl/cu121
-pip install -r requirements.txt
+pip install git+https://github.com/Alpha-VLLM/Lumina-Image-2.0.git
+pip install transformers
 ```
-
-
-### 📥 Download Models
-
-(Provide instructions for downloading models here)
 
 
 ### 🔍 Inference
@@ -96,7 +95,8 @@ For detailed instructions on model evaluation, please refer to the [Evaluation R
 - [x] Release the inference code.
 - [x] Release the evaluation code.
 - [x] Release the data and checkpoints for LeX Series.
-- [x] Release the training code for LeX-Lumina & LeX-FLUX.
+- [x] Release the training code for LeX-Lumina.
+- [ ] Release the training code for LeX-FLUX
 
 ## 📚 BibTeX
 
@@ -105,8 +105,19 @@ If you find LeX-Art useful for your research and applications, please cite using
 ```BibTeX
 @article{zhao2025lexart,
   title={LeX-Art: Rethinking Text Generation for Visual Content via Scalable High-Quality Data Synthesis},
-  author={Zhao, Shitian and Wu, Qilong and Li, Xinyue and Zhang, Bo and Li, Ming and Qin, Qi and Liu, Dongyang and Zhang, Kaipeng and Gao, Peng and Fu, Bin and Li, Zhen},
+  author={
+    Zhao, Shitian and Wu, Qilong and Li, Xinyue and Zhang, Bo and Li, Ming and Qin, Qi and Liu, Dongyang and Zhang, Kaipeng and Li, Hongsheng and Qiao, Yu and Gao, Peng and Fu, Bin and Li, Zhen
+  },
   journal={arXiv preprint},
   year={2025}
 }
 ```
+
+## 🙏 Acknowledgements
+
+Our work is primarily built upon 
+[FLUX](https://github.com/black-forest-labs/flux), 
+[Lumina-Image-2.0](https://github.com/Alpha-VLLM/Lumina-Image-2.0), 
+[Qwen](https://github.com/QwenLM/Qwen2.5), 
+[DeepSeek](https://github.com/deepseek-ai/DeepSeek-R1), etc.
+We extend our gratitude to all these authors for their significant contributions to the community.
