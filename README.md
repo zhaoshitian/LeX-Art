@@ -69,7 +69,7 @@ conda create -n lex python=3.10
 
 # if cuda version == 12.1
 pip install torch==2.4.0 torchvision==0.19.0 --index-url https://download.pytorch.org/whl/cu121
-pip install git+https://github.com/Alpha-VLLM/Lumina-Image-2.0.git
+pip install git+https://github.com/huggingface/diffusers.git
 pip install transformers
 ```
 
