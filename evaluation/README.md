@@ -6,7 +6,11 @@ To calculate the score of your generated images on benchamrks, you need to forma
     {
         "image_name": "the/path/to/the/generated/image",
         "caption": "caption",
-        "refined_caption": "the/refined/caption"
+        "enhanced_caption": "the/enhanced/caption"
+        "simple_image_path" : "the/path/to/the/generated/image/using/simple/caption",
+        "enhanced_image_path" : "the/path/to/the/generated/image/using/enhanced/caption",
+        "simple_image_ocr_results": "ocr/results/from/paddle-ocr-v3",
+        "enhanced_image_ocr_results": "ocr/results/from/paddle-ocr-v3", 
     },
     ......
 ]
