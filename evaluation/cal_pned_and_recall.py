@@ -59,7 +59,7 @@ def calculate_recall(list1, list2, threshold=0.3):
     recall = true_positives / total
     return recall
 
-def matching_based_nled(test_list, gt_list):
+def matching_based_nled(gt_list, test_list):
     # 
     new_test_list = []
     for _ in test_list:
