@@ -8,6 +8,7 @@ To calculate the score of your generated images on benchamrks, you need to forma
         "caption": "caption",
         "enhanced_caption": "the/enhanced/caption",
         "text": "the/ground/truth/text", # if LeX-Bench or none
+        # "color" or "font" or "position" if LeX-Bench or none
         "simple_image_path" : "the/path/to/the/generated/image/using/simple/caption",
         "enhanced_image_path" : "the/path/to/the/generated/image/using/enhanced/caption",
         "simple_image_ocr_results": "ocr/results/from/paddle-ocr-v3",
