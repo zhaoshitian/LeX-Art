@@ -141,7 +141,7 @@ if __name__ == "__main__":
     all_recall_enhanced_image += recall_list_enhanced_image
 
     # Output results
-    print(f"NLED score (simple): {sum(all_nled_simple_image)/len(all_nled_simple_image)}")
-    print(f"NLED score (enhanced): {sum(all_nled_enhanced_image)/len(all_nled_enhanced_image)}")
+    print(f"PNED score (simple): {sum(all_nled_simple_image)/len(all_nled_simple_image)}")
+    print(f"PNED score (enhanced): {sum(all_nled_enhanced_image)/len(all_nled_enhanced_image)}")
     print(f"Recall score (simple): {sum(all_recall_simple_image)/len(all_recall_simple_image)}")
     print(f"Recall score (enhanced): {sum(all_recall_enhanced_image)/len(all_recall_enhanced_image)}")
