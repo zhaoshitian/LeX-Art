@@ -37,6 +37,12 @@ def calculate_recall(list1, list2, threshold=0.3):
     used_indices_list1 = set()  # Record the indices of matched elements in list1
     used_indices_list2 = set()  # Record the indices of matched elements in list2
 
+    new_list2 = []
+    for _ in list2:
+        new_list2.extend(_.split(" ", -1))
+
+    list2 = new_list2
+
     for i, gt in enumerate(list1):
         if i in used_indices_list1:
             continue  # If the element in list1 has already been matched, skip
@@ -54,6 +60,13 @@ def calculate_recall(list1, list2, threshold=0.3):
     return recall
 
 def matching_based_nled(test_list, gt_list):
+    # 
+    new_test_list = []
+    for _ in test_list:
+        new_test_list.extend(_.split(" ", -1))
+
+    test_list = new_test_list
+    
     # Calculate the matching-based normalized edit distance
     len_test, len_gt = len(test_list), len(gt_list)
     
