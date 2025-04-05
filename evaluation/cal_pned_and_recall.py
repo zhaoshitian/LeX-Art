@@ -86,8 +86,6 @@ def matching_based_nled(gt_list, test_list):
     # Total cost
     total_cost = matched_cost + unmatched_cost
     
-    # Normalize
-    max_len = max(len_test, len_gt)
     return total_cost 
 
 def parse_text(simple_caption):
