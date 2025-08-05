@@ -12,18 +12,24 @@ from difflib import SequenceMatcher
 import time
 from requests.exceptions import ProxyError, RequestException
 from tqdm import tqdm
+import openai
+from openai import OpenAI
+
 
 thresh = os.getenv("THRESH")
 img_source = os.getenv("IMG_SOURCE")
 model_name = os.getenv("MODEL_NAME")
-json_path = os.getenv("FILE_PATH")
+json_path = os.getenv("BENCH_RESULT_PATH")
 
-Baseurl = "https://api.claudeshop.top"
-Skey = "sk-**"
+Baseurl = "https://api.boyuerichdata.opensphereai.com/v1"
+Skey = "sk-xxx"
+client = OpenAI(api_key=Skey, base_url=Baseurl)
 # Create output folder
 output_folder = f"./benchmarks/results_vqa/cropped_images_{model_name}_{img_source}_{str(thresh)}"  # Replace with your output folder path
 os.makedirs(output_folder, exist_ok=True)
 output_json = f"./benchmarks/results_vqa/final_easy_{model_name}_{img_source}_{str(thresh)}.json"
+
+
 
 # Define a function to calculate string similarity
 def similar(a, b):
@@ -32,24 +38,6 @@ def similar(a, b):
 # Load JSON data
 with open(json_path, "r") as f:  # Replace with your JSON file path
     data = json.load(f)
-
-
-# Function to call GPT API
-def call_gpt_api(payload, headers, url, max_retries=3):
-    for attempt in range(max_retries):
-        try:
-            response = requests.request("POST", url, headers=headers, data=payload)
-            if response.status_code == 200:
-                return response.json()
-        except ProxyError as e:
-            print(f"Attempt {attempt + 1} failed: {e}")
-            time.sleep(2)  # Wait 2 seconds before retrying
-        except RequestException as e:
-            print(f"Request exception: {e}")
-            break
-    print("API call failed, reached maximum retries")
-    return None
-
 
 # Font style list
 font_styles = [
@@ -148,7 +136,7 @@ for element in tqdm(data):
         cropped_image = image[y_min:y_max, x_min:x_max]
 
         # Save the cropped image
-        output_cropped_path = os.path.join(output_folder, f"{element['prompt_idx']}_{idx}_cropped.png")
+        output_cropped_path = os.path.join(output_folder, f"{element['id']}_{idx}_cropped.png")
         text_item['cropped_image_path'] = output_cropped_path
         cv2.imwrite(output_cropped_path, cropped_image)
 
@@ -169,35 +157,31 @@ for element in tqdm(data):
         with open(output_cropped_path, "rb") as img_file:
             base64_image = base64.b64encode(img_file.read()).decode('utf-8')
 
-        payload = json.dumps({
-            "model": "gpt-4o-2024-11-20",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "You are an assistant skilled in image data annotation who can accurately identify colors and fonts."
-                },
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": vqa_question},
-                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
-                    ]
-                }
-            ],
-            "max_tokens": 6000,
-        })
-        url = Baseurl + "/v1/chat/completions"
-        headers = {
-            'Accept': 'application/json',
-            'Authorization': f'Bearer {Skey}',
-            'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
-            'Content-Type': 'application/json'
-        }
+        messages = [
+            {
+                "role": "system",
+                "content": "You are an assistant skilled in image data annotation who can accurately identify colors and fonts."
+            },
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": vqa_question},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
+                ]
+            }
+        ]
 
-        
-        response_data = call_gpt_api(payload, headers, url)
+        response_data = client.chat.completions.create(
+            messages=messages,
+            model='gpt-4.1',
+            max_tokens=6000,
+            # max_retries=5
+        )
+        # print()
+
         if response_data:
-            content = response_data['choices'][0]['message']['content']
+            content = response_data.choices[0].message.content
+            # print(content)
         else:
             content = 'fail to get answer'
 
@@ -220,3 +204,34 @@ with open(output_json, "w") as f:
     json.dump(new_data_list, f, indent=4)
 
 print("Processing completed, results saved!")
+
+
+path = output_json
+
+data_list = json.load(open(path, "r", encoding="utf-8"))
+
+all_answer_list_color = []
+all_answer_list_font = []
+all_question_num_color = 0
+all_question_num_font = 0
+for item in data_list:
+    if "color_VQA" in list(item.keys()):
+        vqa_item = item['color_VQA']
+        all_question_num_color += len(item['text'])
+        answer_list = [_['answer'] for _ in vqa_item]
+        all_answer_list_color.extend(answer_list)
+    elif "font_VQA" in list(item.keys()):
+        vqa_item = item['font_VQA']
+        all_question_num_font += len(item['text'])
+        answer_list = [_['answer'] for _ in vqa_item]
+        all_answer_list_font.extend(answer_list)
+    # else:
+    #     print(item)
+
+right_color = sum([_ == "Yes" for _ in all_answer_list_color])
+right_font = sum([_ == "Yes" for _ in all_answer_list_font])
+
+print(f"color: {right_color/all_question_num_color}")
+print(f"font: {right_font/all_question_num_font}")
+
+
