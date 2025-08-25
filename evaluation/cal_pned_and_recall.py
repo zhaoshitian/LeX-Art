@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
     ocr_results_simple_image, ocr_results_enhanced_image, gt_text_list = collect_data(path)
     
-    # Calculate NLED
+    # Calculate PNED
     nled_list_simple_image = [matching_based_nled(A, B) for A, B in zip(gt_text_list, ocr_results_simple_image)]
     nled_list_enhanced_image = [matching_based_nled(A, B) for A, B in zip(gt_text_list, ocr_results_enhanced_image)]
 
